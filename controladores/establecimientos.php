@@ -36,7 +36,7 @@
                 break;
 
                 case 'selectid':
-                    return ($this->userModel->getUserById($oParam));
+                    return $this->userModel->getUserById($oParam);
                 break;
 
                 case 'sistema':
