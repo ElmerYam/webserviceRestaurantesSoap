@@ -13,15 +13,15 @@ $metodo = "";
 
 switch($array->controlador){
     case 'establecimientos':
-    $metodo = 'establecimientos.post';
+    $metodo = 'usuario.post';
     break;
-    case: 'reservaciones':
+    case 'reservaciones':
     $metodo = 'reservaciones.post';
     break;
-    case: 'alimentos':
+    case 'alimentos':
     $metodo = 'alimentos.post';
     break;
-    case: 'pedidos':
+    case 'pedidos':
     $metodo = 'pedidos.post';
     break;
     default:
