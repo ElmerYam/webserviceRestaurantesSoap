@@ -4,14 +4,32 @@ require_once('core/VistaJson.php');
 
 $cliente = new nusoap_client("http://localhost/webserviceRestaurantesSoap/server.php",false);
 
-$elmer = array('id_estab'=>12,'opcion'=>"all",'controlador'=>"establecimientos");
+//$elmer = array('id_estab'=>12,'opcion'=>"all",'controlador'=>"establecimientos");
 
 $cuerpo= file_get_contents('php://input');
 $array= json_decode($cuerpo);
-//$elmer['id_estab'] = 12;
+
+$metodo = "";
+
+switch($array->controlador){
+    case 'establecimientos':
+    $metodo = 'establecimientos.post';
+    break;
+    case: 'reservaciones':
+    $metodo = 'reservaciones.post';
+    break;
+    case: 'alimentos':
+    $metodo = 'alimentos.post';
+    break;
+    case: 'pedidos':
+    $metodo = 'pedidos.post';
+    break;
+    default:
+    break;
+}
 
 //$respuesta = $cliente->call("usuario.post",$elmer);
-$respuesta = $cliente->call("usuario.post",array('parametros'=>$array));
+$respuesta = $cliente->call($metodo,array('parametros'=>$array));
 
 //imprimir como json
 $vista = new VistaJson();
