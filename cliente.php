@@ -1,5 +1,6 @@
 <?php
 require_once('core/nusoap-0.9.5/lib/nusoap.php');
+require_once('core/VistaJson.php');
 
 $cliente = new nusoap_client("http://localhost/webserviceRestaurantesSoap/server.php",false);
 
@@ -9,12 +10,12 @@ $cuerpo= file_get_contents('php://input');
 $array= json_decode($cuerpo);
 //$elmer['id_estab'] = 12;
 
-var_dump($elmer);
-
 //$respuesta = $cliente->call("usuario.post",$elmer);
 $respuesta = $cliente->call("usuario.post",array('parametros'=>$array));
 
-var_dump($respuesta);
+//imprimir como json
+$vista = new VistaJson();
+$vista->imprimir($respuesta);
 
 ?>
 
